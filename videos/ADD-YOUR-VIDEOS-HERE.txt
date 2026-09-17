@@ -1,0 +1,1 @@
+Put .mp4/.webm/.mov/.m4v/.ogg files here, then double-click ../update-videos.bat

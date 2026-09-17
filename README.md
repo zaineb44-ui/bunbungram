@@ -1,63 +1,69 @@
 # BunBunGram 🐰♡
 
-A no-login, Instagram-Reels-style website for your shared videos.
+This version requires **no Python, Node.js, Supabase, or database**.
 
-## The easy workflow
+## Add a new Reel on Windows
 
-1. Copy your videos into the `videos` folder.
-2. Double-click `update-videos.bat` on Windows.
-3. It scans the folder and rebuilds `videos.json` automatically.
-4. Open/deploy the website.
-5. Every discovered video appears in the feed.
+1. Copy your video into the `videos` folder.
+2. Double-click `update-videos.bat`.
+3. A window will tell you how many videos were found.
+4. `videos.json` is updated automatically.
+5. Redeploy/push the project to your hosting provider.
+
+That's it.
 
 Example:
 
-    videos/
-      Our first date.mp4
-      Bunbun being silly.mp4
-      That smile.mp4
+    BunBunGram/
+    ├── videos/
+    │   ├── Our first date.mp4
+    │   ├── Bunbun being silly.mp4
+    │   └── That smile.mp4
+    ├── update-videos.bat
+    ├── update-videos.ps1
+    ├── videos.json
+    ├── index.html
+    ├── style.css
+    └── app.js
 
-The filenames automatically become captions:
-`Bunbun being silly.mp4` → `Bunbun being silly`
+## Captions
 
-You can rename the files before running the updater to control the captions.
+The filename becomes the caption automatically.
 
-## Requirements for the updater
+`Bunbun-being-silly.mp4`
+becomes:
+`Bunbun being silly`
 
-Windows needs Python installed. During Python installation, enable "Add Python to PATH".
-On macOS/Linux, run:
+Rename a video before running the updater if you want a different caption.
 
-    ./update-videos.sh
+## Supported files
 
-or:
+- MP4
+- WebM
+- MOV
+- M4V
+- OGG
 
-    python3 generate_videos.py
-
-## Deploying
-
-Because this is a static project, after adding videos and running the updater you must redeploy/push the changed files to your host.
-
-You can deploy the folder to Vercel, Netlify, Cloudflare Pages, GitHub Pages, or a normal web server.
+MP4 (H.264/AAC) is recommended for the best browser compatibility.
 
 ## Features
 
 - BunBunGram branding
-- No signup/login
-- Full-screen vertical reels
-- Automatic playback while scrolling
-- Double-tap to like
-- Likes saved on each device
-- Liked-reels section
-- Random reel
-- Sound controls
+- No viewer signup or login
+- Instagram-style vertical Reel feed
+- Autoplay while scrolling
+- Double-tap heart
+- Likes saved locally on each device
+- Liked Reels tab
+- Random Reel
+- Mute/unmute
 - Fullscreen
-- Shareable individual reel links
-- Mobile + desktop responsive design
+- Individual Reel sharing links
 - Automatic captions from filenames
+- Responsive mobile and desktop layouts
 
-## Important
+## Important hosting limitation
 
-A website hosted on Vercel/Cloudflare Pages cannot inspect a local `/videos` directory after deployment.
-That is why `update-videos.bat` generates `videos.json` before deployment.
+The updater runs on your Windows PC. After adding videos and running it, redeploy the changed project so the online BunBunGram receives the new video files and `videos.json`.
 
-There is also no authentication by design. Anyone who receives your public URL may be able to view it.
+Because BunBunGram intentionally has no authentication, anyone who receives the public deployment URL may be able to view the reels.

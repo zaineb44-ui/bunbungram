@@ -1,18 +1,27 @@
 @echo off
+setlocal
 title BunBunGram - Update Videos
 cd /d "%~dp0"
+
 echo.
-echo ==============================
-echo       BunBunGram Updater
-echo ==============================
+echo ======================================
+echo          BunBunGram Updater
+echo ======================================
 echo.
-where py >nul 2>nul
-if %errorlevel%==0 (
-  py generate_videos.py
-) else (
-  python generate_videos.py
+echo Scanning the videos folder...
+echo.
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0update-videos.ps1"
+
+if errorlevel 1 (
+    echo.
+    echo ERROR: BunBunGram could not update the video list.
+    echo Make sure the videos folder exists and try again.
+    echo.
+    pause
+    exit /b 1
 )
-echo.
-echo Done. You can now deploy/push the BunBunGram folder.
+
+echo You can now redeploy or push BunBunGram.
 echo.
 pause
